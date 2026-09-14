@@ -81,20 +81,35 @@
 </head>
 <body>
 
-<!-- بنر دیدار در نمایشگاه الکامپ — داده‌ی واقعی نمایشگاه، زمینه‌ی شیشه‌ای با توری محو -->
+<!-- بنرها — دیدار در نمایشگاه الکامپ + دورهمی با آزادکاران برنامه‌نویس — کنار هم، زمینه‌ی شیشه‌ای مشترک -->
 <div style="padding:20px 24px;background:var(--bone);">
-  <div class="wrap b corner" style="position:relative;overflow:hidden;border-radius:16px;background:rgba(255,255,255,0.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:22px 26px;">
-    <div style="position:relative;z-index:1;">
-      <img src="banner.png" alt="پوستر رسمی بیست‌ونهمین نمایشگاه بین‌المللی الکامپ" style="width:100%;height:auto;border-radius:10px;display:block;margin-bottom:16px;">
-    </div>
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;z-index:1;">
-      <div style="display:flex;align-items:center;gap:16px;">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" class="grid-2">
+    <!-- بنر ۱: نمایشگاه الکامپ -->
+    <div class="b corner" style="position:relative;overflow:hidden;border-radius:16px;background:rgba(255,255,255,0.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:22px 26px;display:flex;flex-direction:column;">
+      <div style="position:relative;z-index:1;">
+        <img src="banner.png" alt="پوستر رسمی بیست‌ونهمین نمایشگاه بین‌المللی الکامپ" style="width:100%;height:auto;border-radius:10px;display:block;margin-bottom:16px;">
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;z-index:1;margin-top:auto;">
         <div>
           <div class="tag on" style="margin-bottom:6px;display:inline-block;">دیدار در نمایشگاه</div>
-          <div style="font-weight:800;font-size:16px;">دیدار ما در بیست‌ونهمین نمایشگاه بین‌المللی الکامپ، پنج‌شنبه ۱۲ شهریور</div>
+          <div style="font-weight:800;font-size:15px;">دیدار ما در بیست‌ونهمین نمایشگاه بین‌المللی الکامپ، پنج‌شنبه ۱۲ شهریور</div>
         </div>
+        <a href="https://t.me/Sirparviz" target="_blank" rel="noopener" class="btn mono" style="text-decoration:none;flex-shrink:0;background:var(--orange);color:#fff;border-color:var(--orange);">هماهنگی دیدار ↗</a>
       </div>
-      <a href="https://t.me/Sirparviz" target="_blank" rel="noopener" class="btn mono" style="text-decoration:none;flex-shrink:0;background:var(--orange);color:#fff;border-color:var(--orange);">هماهنگی دیدار ↗</a>
+    </div>
+
+    <!-- بنر ۲: اولین دورهمی با آزادکاران برنامه‌نویس -->
+    <div class="b corner" style="position:relative;overflow:hidden;border-radius:16px;background:rgba(255,255,255,0.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:22px 26px;display:flex;flex-direction:column;">
+      <div style="position:relative;z-index:1;">
+        <img src="banner2.png" alt="پوستر اولین دورهمی با آزادکاران برنامه‌نویس — نظام صنفی رایانه‌ای استان اصفهان" style="width:100%;height:auto;border-radius:10px;display:block;margin-bottom:16px;">
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;z-index:1;margin-top:auto;">
+        <div>
+          <div class="tag on" style="margin-bottom:6px;display:inline-block;">رویداد</div>
+          <div style="font-weight:800;font-size:15px;">اولین دورهمی با آزادکاران برنامه‌نویس — نظام صنفی رایانه‌ای اصفهان</div>
+        </div>
+        <a href="https://t.me/Sirparviz" target="_blank" rel="noopener" class="btn mono" style="text-decoration:none;flex-shrink:0;background:var(--orange);color:#fff;border-color:var(--orange);">اطلاعات بیشتر ↗</a>
+      </div>
     </div>
   </div>
 </div>
@@ -474,8 +489,6 @@ document.getElementById('todayYear').textContent = toFaNum(today.year);
 document.getElementById('pulseDate').textContent = 'به‌روز تا ' + toFaNum(today.day) + ' ' + monthNames[today.month-1] + ' ' + toFaNum(today.year);
 
 // ===== نبض LLM زنده — از یک API عمومیِ واقعی و رایگان (Hacker News)، بدون نیاز به بک‌اند یا کلید =====
-// چرا این منبع: CORS باز داره (مستقیم از مرورگر قابل‌خوانه)، رایگانه، نیازی به کلید API نداره.
-// برای نسخه‌ی نهایی می‌شه به‌جاش یک منبع تخصصی‌تر (مثل NewsAPI یا RSS یک وبلاگ AI) از پشت یک پراکسی سمت سرور وصل کرد.
 async function loadLivePulse(){
   const statusEl = document.getElementById('pulseLiveStatus');
   const listEl = document.getElementById('pulseLiveList');
@@ -539,10 +552,7 @@ vals.forEach((v,i)=>{
   barsG.appendChild(bar);
 });
 
-// آثار و کتاب‌ها اکنون مستقیماً در HTML نوشته شده‌اند (نه با جاوااسکریپت) — برای ایندکس‌شدن سریع‌تر توسط گوگل
-
-// دکمه‌ی خرید کتاب‌ها: هنوز فروشگاهی وصل نیست، پس به‌جای یک متن خشکِ «به‌زودی»
-// یک شبیه‌سازیِ شوخ‌طبعانه‌ی «در حال آماده‌سازی» نشون می‌دیم که در ۹۲٪ گیر می‌کنه.
+// دکمه‌ی خرید کتاب‌ها: هنوز فروشگاهی وصل نیست
 function buySoon(btn){
   if(btn.dataset.busy) return;
   btn.dataset.busy='1';
