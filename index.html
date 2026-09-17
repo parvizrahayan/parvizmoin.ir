@@ -81,38 +81,64 @@
 </head>
 <body>
 
-<!-- بنرها — دیدار در نمایشگاه الکامپ + دورهمی با آزادکاران برنامه‌نویس — کنار هم، زمینه‌ی شیشه‌ای مشترک -->
-<div style="padding:20px 24px;background:var(--bone);">
-  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" class="grid-2">
-    <!-- بنر ۱: نمایشگاه الکامپ -->
-    <div class="b corner" style="position:relative;overflow:hidden;border-radius:16px;background:rgba(255,255,255,0.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:22px 26px;display:flex;flex-direction:column;">
-      <div style="position:relative;z-index:1;">
-        <img src="banner.png" alt="پوستر رسمی بیست‌ونهمین نمایشگاه بین‌المللی الکامپ" style="width:100%;height:auto;border-radius:10px;display:block;margin-bottom:16px;">
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;z-index:1;margin-top:auto;">
-        <div>
-          <div class="tag on" style="margin-bottom:6px;display:inline-block;">دیدار در نمایشگاه</div>
-          <div style="font-weight:800;font-size:15px;">دیدار ما در بیست‌ونهمین نمایشگاه بین‌المللی الکامپ، پنج‌شنبه ۱۲ شهریور</div>
-        </div>
-        <a href="https://t.me/Sirparviz" target="_blank" rel="noopener" class="btn mono" style="text-decoration:none;flex-shrink:0;background:var(--orange);color:#fff;border-color:var(--orange);">هماهنگی دیدار ↗</a>
-      </div>
-    </div>
-
-    <!-- بنر ۲: اولین دورهمی با آزادکاران برنامه‌نویس -->
-    <div class="b corner" style="position:relative;overflow:hidden;border-radius:16px;background:rgba(255,255,255,0.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:22px 26px;display:flex;flex-direction:column;">
-      <div style="position:relative;z-index:1;">
-        <img src="banner2.png" alt="پوستر اولین دورهمی با آزادکاران برنامه‌نویس — نظام صنفی رایانه‌ای استان اصفهان" style="width:100%;height:auto;border-radius:10px;display:block;margin-bottom:16px;">
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;z-index:1;margin-top:auto;">
-        <div>
-          <div class="tag on" style="margin-bottom:6px;display:inline-block;">رویداد</div>
-          <div style="font-weight:800;font-size:15px;">اولین دورهمی با آزادکاران برنامه‌نویس — نظام صنفی رایانه‌ای اصفهان</div>
-        </div>
-        <a href="https://t.me/Sirparviz" target="_blank" rel="noopener" class="btn mono" style="text-decoration:none;flex-shrink:0;background:var(--orange);color:#fff;border-color:var(--orange);">اطلاعات بیشتر ↗</a>
-      </div>
-    </div>
-  </div>
+<!-- بنرها — رندر خودکار از آرایه‌ی BANNERS؛ برای افزودن بنر جدید فقط یک آبجکت به آرایه اضافه کن. بنرهای دارای until پس از تاریخ منقضی خودکار مخفی می‌شوند. -->
+<div id="bannersWrap" style="padding:20px 24px;background:var(--bone);">
+  <div class="wrap grid-2" id="bannersGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;"></div>
 </div>
+<script>
+const BANNERS = [
+  {
+    tag: "دیدار در نمایشگاه",
+    title: "دیدار ما در بیست‌ونهمین نمایشگاه بین‌المللی الکامپ، پنج‌شنبه ۱۲ شهریور",
+    img: "banner.png",
+    alt: "پوستر رسمی بیست‌ونهمین نمایشگاه بین‌المللی الکامپ",
+    cta: "هماهنگی دیدار ↗",
+    link: "https://t.me/Sirparviz",
+    until: "2026-09-03"
+  },
+  {
+    tag: "رویداد",
+    title: "اولین دورهمی با آزادکاران برنامه‌نویس — نظام صنفی رایانه‌ای اصفهان",
+    img: "banner2.png",
+    alt: "پوستر اولین دورهمی با آزادکاران برنامه‌نویس — نظام صنفی رایانه‌ای استان اصفهان",
+    cta: "اطلاعات بیشتر ↗",
+    link: "https://t.me/Sirparviz",
+    until: "2026-09-03"
+  },
+  {
+    tag: "پروژه شریک",
+    title: "کارخانه‌ی نوآوری سیلیکون شریف — اکوسیستم شتاب‌دهی و فضای کاری هوشمند",
+    img: "banner3.jpg",
+    alt: "بنر کارخانه‌ی نوآوری سیلیکون شریف",
+    cta: "مشاهده سایت ↗",
+    link: "https://siliconsharif.ir"
+    // بدون until = همیشه نمایش داده می‌شود
+  }
+];
+
+function renderBanners(){
+  const grid = document.getElementById('bannersGrid');
+  const wrap = document.getElementById('bannersWrap');
+  const now = new Date();
+  const active = BANNERS.filter(b => !b.until || new Date(b.until) >= now);
+  if(!active.length){ wrap.style.display = 'none'; return; }
+  grid.innerHTML = active.map(b => `
+    <div class="b corner" style="position:relative;overflow:hidden;border-radius:16px;background:rgba(255,255,255,0.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:22px 26px;display:flex;flex-direction:column;">
+      <div style="position:relative;z-index:1;">
+        <img src="${b.img}" alt="${b.alt}" style="width:100%;height:auto;border-radius:10px;display:block;margin-bottom:16px;">
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;z-index:1;margin-top:auto;">
+        <div>
+          <div class="tag on" style="margin-bottom:6px;display:inline-block;">${b.tag}</div>
+          <div style="font-weight:800;font-size:15px;">${b.title}</div>
+        </div>
+        <a href="${b.link}" target="_blank" rel="noopener" class="btn mono" style="text-decoration:none;flex-shrink:0;background:var(--orange);color:#fff;border-color:var(--orange);">${b.cta}</a>
+      </div>
+    </div>
+  `).join('');
+}
+renderBanners();
+</script>
 
 
 <!-- NAV -->
