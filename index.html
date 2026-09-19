@@ -80,6 +80,8 @@
     #siteNav{flex-wrap:wrap;justify-content:center;gap:12px !important;width:100%;order:3;}
     #libraryPanel{padding:22px 18px;}
   }
+
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 </style>
 </head>
 <body>
@@ -419,22 +421,20 @@ renderBanners();
 </section>
 
 
-<!-- اتاق خبر: تجمیع زنده‌ی اخبار هوش مصنوعی از چند منبع عمومی، بدون بک‌اند یا کلید -->
+
+<!-- اتاق خبر: طراحی کارتی مدرن، تجمیع خودکار -->
 <section id="newsroom" class="wrap b-b" style="padding:48px 24px;">
-  <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:8px;">
+  <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:20px;">
     <div>
       <div class="tag" style="margin-bottom:10px;">NEWSROOM</div>
       <h2 style="font-size:26px;font-weight:900;margin:0;">اتاق خبر هوش مصنوعی</h2>
     </div>
-    <button class="btn mono" style="font-size:11px;padding:6px 12px;" onclick="loadNewsroom()">بروزرسانی ↻</button>
+    <button class="btn mono" style="font-size:11px;padding:6px 12px;display:flex;align-items:center;gap:6px;" onclick="loadNewsroom()">
+      <span id="newsroomSpin" style="display:inline-block;">↻</span>بروزرسانی
+    </button>
   </div>
-  <p style="color:var(--ink-soft);font-size:13px;margin:6px 0 22px;">تازه‌ترین اخبار و مطالب فناوری هوش مصنوعی، تجمیع‌شده‌ی زنده از چند منبع عمومی (Hacker News و Dev.to).</p>
-  <div class="b" style="border-radius:10px;padding:16px;background:var(--card);">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-      <span class="mono" style="font-size:10px;color:var(--ink-soft);">● زنده — هوش مصنوعی و فناوری</span>
-      <span class="mono" id="newsroomStatus" style="font-size:10px;color:var(--ink-soft);">در حال دریافت...</span>
-    </div>
-    <div id="newsroomList" style="display:flex;flex-direction:column;gap:8px;"></div>
+  <div id="newsroomGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;">
+    <div class="mono" style="font-size:11px;color:var(--ink-soft);grid-column:1/-1;">در حال دریافت...</div>
   </div>
 </section>
 <!-- فناوری و انسان: موتیف دیاگرام فنی (رفرنس ۴) -->
@@ -580,41 +580,57 @@ async function loadLivePulse(){
 }
 loadLivePulse();
 
-// ===== اتاق خبر — تجمیع از Hacker News + Dev.to، بدون بک‌اند یا کلید =====
+// ===== Newsroom v2: کارت‌های مدرن، ترکیب Algolia HN Search + Dev.to =====
+function newsroomTimeAgo(unixSeconds){
+  const diff = Math.floor(Date.now()/1000) - unixSeconds;
+  if(diff < 90) return 'همین حالا';
+  if(diff < 3600) return Math.floor(diff/60) + ' دقیقه پیش';
+  if(diff < 86400) return Math.floor(diff/3600) + ' ساعت پیش';
+  return Math.floor(diff/86400) + ' روز پیش';
+}
 async function loadNewsroom(){
-  const statusEl = document.getElementById('newsroomStatus');
-  const listEl = document.getElementById('newsroomList');
-  statusEl.textContent = 'در حال دریافت...';
-  listEl.innerHTML = '';
+  const grid = document.getElementById('newsroomGrid');
+  const spin = document.getElementById('newsroomSpin');
+  spin.style.animation = 'spin 0.8s linear infinite';
+  grid.innerHTML = `<div class="mono" style="font-size:11px;color:var(--ink-soft);grid-column:1/-1;">${ 'در حال دریافت...' }</div>`;
   try{
-    const keywords = /\b(AI|A\.I\.|artificial intelligence|LLM|GPT|Claude|Gemini|OpenAI|Anthropic|LLaMA|machine learning|neural network)\b/i;
-    const [hnIdsRes, devtoRes] = await Promise.all([
-      fetch('https://hacker-news.firebaseio.com/v0/topstories.json'),
-      fetch('https://dev.to/api/articles?tag=ai&per_page=10')
+    const [hnRes, devtoRes] = await Promise.allSettled([
+      fetch('https://hn.algolia.com/api/v1/search_by_date?query=AI%20OR%20LLM%20OR%20GPT%20OR%20Claude%20OR%20OpenAI%20OR%20Anthropic&tags=story&hitsPerPage=8').then(r=>r.json()),
+      fetch('https://dev.to/api/articles?tag=ai&per_page=8').then(r=>r.json())
     ]);
-    const hnIds = (await hnIdsRes.json()).slice(0, 80);
-    const hnItems = await Promise.all(hnIds.map(id =>
-      fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(r=>r.json()).catch(()=>null)
-    ));
-    const hnMatched = hnItems.filter(it => it && it.title && keywords.test(it.title)).slice(0,6)
-      .map(it => ({title: it.title, url: it.url || `https://news.ycombinator.com/item?id=${it.id}`, source:'HN'}));
-    const devtoItems = (await devtoRes.json()).slice(0,6).map(a => ({title:a.title, url:a.url, source:'Dev.to'}));
-    const all = [...hnMatched, ...devtoItems];
-    if(all.length===0){
-      statusEl.textContent = 'موردی پیدا نشد';
-      listEl.innerHTML = '<div class="mono" style="font-size:11px;color:var(--ink-soft);">در حال حاضر خبری در دسترس نیست.</div>';
+    let items = [];
+    if(hnRes.status==='fulfilled' && hnRes.value && hnRes.value.hits){
+      items.push(...hnRes.value.hits.filter(h=>h.title && (h.url||h.objectID)).map(h => ({
+        title: h.title,
+        url: h.url || `https://news.ycombinator.com/item?id=${h.objectID}`,
+        ts: h.created_at_i,
+        accent: '#e0622c'
+      })));
+    }
+    if(devtoRes.status==='fulfilled' && Array.isArray(devtoRes.value)){
+      items.push(...devtoRes.value.filter(a=>a.title && a.url).map(a => ({
+        title: a.title,
+        url: a.url,
+        ts: Math.floor(new Date(a.published_at||a.published_timestamp||Date.now()).getTime()/1000),
+        accent: '#1a7a5e'
+      })));
+    }
+    items.sort((a,b)=>b.ts-a.ts);
+    items = items.slice(0,10);
+    spin.style.animation = '';
+    if(items.length===0){
+      grid.innerHTML = `<div class="mono" style="font-size:11px;color:var(--ink-soft);grid-column:1/-1;">${ 'فعلاً موردی نیست — بعداً دوباره سر بزن.' }</div>`;
       return;
     }
-    statusEl.textContent = all.length + ' مورد · اکنون';
-    listEl.innerHTML = all.map(it => `
-      <a href="${it.url}" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;gap:10px;text-decoration:none;color:var(--ink);font-size:12.5px;padding:6px 0;border-bottom:1px solid #ddd8cc;">
-        <span>${it.title}</span><span class="mono" style="font-size:10px;color:var(--ink-soft);flex-shrink:0;">↗ ${it.source}</span>
+    grid.innerHTML = items.map(it => `
+      <a href="${it.url}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:var(--ink);background:var(--card);border-radius:10px;padding:14px;border-top:3px solid ${it.accent};transition:transform .15s;">
+        <div style="font-size:13px;font-weight:700;line-height:1.5;margin-bottom:10px;">${it.title}</div>
+        <div class="mono" style="font-size:10px;color:var(--ink-soft);">${newsroomTimeAgo(it.ts)} ↗</div>
       </a>`).join('');
   }catch(e){
-    statusEl.textContent = 'قطع اتصال';
-    listEl.innerHTML = '<div class="mono" style="font-size:11px;color:var(--ink-soft);">اتصال برقرار نشد — لطفاً بعداً دوباره سر بزنید.</div>';
-  }
-}
+    spin.style.animation = '';
+    grid.innerHTML = `<div class="mono" style="font-size:11px;color:var(--ink-soft);grid-column:1/-1;">${ 'اتصال برقرار نشد — چند لحظه دیگر دوباره امتحان کن.' }</div>`;
+  }}
 loadNewsroom();
 
 
