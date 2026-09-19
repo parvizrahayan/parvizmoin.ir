@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Crect x='1' y='1' width='20' height='20' rx='4' fill='%23EDEAE4' stroke='%23141414' stroke-width='1.5'/%3E%3Ccircle cx='11' cy='11' r='3' fill='%23F0541F'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Crect x='1' y='1' width='20' height='20' rx='4' fill='%23EDEAE4' stroke='%23141414' stroke-width='1.5'/%3E%3Ctext x='11' y='15' font-family='monospace' font-size='9' font-weight='800' text-anchor='middle' fill='%23F0541F'%3EPM%3C/text%3E%3C/svg%3E">
+<title>parvizmoin.ir</title>
+<meta name="description" content="پرویز معین — پژوهشگر، فعال فناوری و نظریه‌پرداز. پروژه‌ها، کتاب‌ها و باورها درباره‌ی فناوری در خدمت رشد انسان.">
+<link rel="canonical" href="https://parvizmoin.ir/">
+<link rel="alternate" hreflang="fa" href="https://fa.parvizmoin.ir/">
+<link rel="alternate" hreflang="en" href="https://en.parvizmoin.ir/">
+<link rel="alternate" hreflang="de" href="https://de.parvizmoin.ir/">
+<link rel="alternate" hreflang="x-default" href="https://parvizmoin.ir/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="پرویز معین — پژوهش، فناوری، انسان">
+<meta property="og:description" content="پژوهشگر، فعال فناوری و نظریه‌پرداز. مجموعه‌ای از پروژه‌ها و کتاب‌ها در مسیر صلح، طبیعت و شکوفایی انسان.">
+<meta property="og:url" content="https://parvizmoin.ir/">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="پرویز معین — پژوهش، فناوری، انسان">
+<meta name="twitter:description" content="پژوهشگر، فعال فناوری و نظریه‌پرداز. مجموعه‌ای از پروژه‌ها و کتاب‌ها در مسیر صلح، طبیعت و شکوفایی انسان.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Parviz Moin",
+  "alternateName": "پرویز معین",
+  "url": "https://parvizmoin.ir/",
+  "jobTitle": "Researcher, Technology Activist",
+  "description": "پژوهشگر، فعال فناوری و نظریه‌پرداز؛ متعهد به رشد و شکوفایی انسان از دریچه‌ی فناوری، صلح و طبیعت.",
+  "knowsAbout": ["Technology Philosophy", "Artificial Intelligence", "Human Flourishing"]
+}
+</script>
+<meta property="og:image" content="https://parvizmoin.ir/banner.png">
+<meta name="twitter:image" content="https://parvizmoin.ir/banner.png">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#EDEAE4; --ink:#141414; --ink-soft:#6B6B66; --line:#141414;
+    --orange:#F0541F; --card:#F6F4EF;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Vazirmatn',sans-serif;background:var(--bone);color:var(--ink);}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .b{border:1.5px solid var(--line);}
+  .b-t{border-top:1.5px solid var(--line);}
+  .b-b{border-bottom:1.5px solid var(--line);}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border:1.5px solid var(--line);border-radius:4px;}
+  .tag.on{background:var(--orange);color:#fff;border-color:var(--orange);}
+  .btn{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;padding:10px 20px;border:1.5px solid var(--line);border-radius:6px;background:transparent;cursor:pointer;transition:.2s;}
+  .btn:hover{background:var(--ink);color:var(--bone);}
+  .btn.primary{background:var(--orange);color:#fff;border-color:var(--orange);}
+  .btn.primary:hover{background:#d1440f;}
+  .corner{position:relative;}
+  .corner::before,.corner::after{content:'';position:absolute;width:8px;height:8px;border:1.5px solid var(--line);}
+  .corner::before{top:-1.5px;right:-1.5px;border-left:none;border-bottom:none;}
+  .corner::after{bottom:-1.5px;left:-1.5px;border-right:none;border-top:none;}
+  .mesh-decor{position:absolute;pointer-events:none;opacity:.22;filter:blur(1.2px);z-index:0;}
+  .mesh-decor path,.mesh-decor circle{stroke:#5A6FA0;}
+  .buy-btn{margin-top:10px;width:100%;font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:8px;border:1.5px solid var(--line);border-radius:6px;background:transparent;cursor:pointer;position:relative;overflow:hidden;}
+  .buy-btn .buy-fill{position:absolute;inset:0;background:var(--orange);width:0%;transition:width 1.4s cubic-bezier(.2,.8,.2,1);opacity:.18;}
+  .buy-btn .buy-label{position:relative;z-index:1;}
+  #libraryOverlay{position:fixed;inset:0;background:rgba(20,20,18,0.55);backdrop-filter:blur(4px);z-index:100;display:none;align-items:center;justify-content:center;padding:24px;}
+  #libraryOverlay.open{display:flex;}
+  #libraryPanel{background:rgba(246,244,239,0.62);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1.5px solid rgba(255,255,255,0.55);border-radius:16px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:36px 32px;position:relative;box-shadow:0 30px 60px -25px rgba(20,20,18,0.35);}
+  #libraryPanel .lib-close{position:absolute;top:16px;left:16px;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);background:var(--bone);cursor:pointer;font-size:14px;}
+  #libraryPanel h3{font-size:22px;font-weight:900;margin:0 0 4px;}
+  #libraryPanel p{font-size:14px;line-height:2.1;color:var(--ink);margin:0 0 16px;}
+
+  @media (max-width: 720px){
+    .grid-2, .grid-3, .grid-4{grid-template-columns:1fr !important;}
+    h1{font-size:34px !important;}
+    header .wrap{flex-wrap:wrap;justify-content:center !important;text-align:center;gap:10px;}
+    #siteNav{flex-wrap:wrap;justify-content:center;gap:12px !important;width:100%;order:3;}
+    #libraryPanel{padding:22px 18px;}
+  }
+
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+
+<!-- بنرها — رندر خودکار از آرایه‌ی BANNERS؛ برای افزودن بنر جدید فقط یک آبجکت به آرایه اضافه کن. بنرهای دارای until پس از تاریخ منقضی خودکار مخفی می‌شوند. -->
+<div id="bannersWrap" style="padding:20px 24px;background:var(--bone);">
+  <div class="wrap grid-2" id="bannersGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;"></div>
+</div>
+<script>
+const BANNERS = [
+  {
+    tag: "دیدار در نمایشگاه",
+    title: "دیدار ما در بیست‌ونهمین نمایشگاه بین‌المللی الکامپ، پنج‌شنبه ۱۲ شهریور",
+    img: "banner.png",
+    alt: "پوستر رسمی بیست‌ونهمین نمایشگاه بین‌المللی الکامپ",
+    cta: "هماهنگی دیدار ↗",
+    link: "https://t.me/Sirparviz",
+    until: "2026-09-03"
+  },
+  {
+    tag: "رویداد",
+    title: "اولین دورهمی با آزادکاران برنامه‌نویس — نظام صنفی رایانه‌ای اصفهان",
+    img: "banner2.png",
+    alt: "پوستر اولین دورهمی با آزادکاران برنامه‌نویس — نظام صنفی رایانه‌ای استان اصفهان",
+    cta: "اطلاعات بیشتر ↗",
+    link: "https://t.me/Sirparviz",
+    until: "2026-09-03"
+  },
+  {
+    tag: "پروژه شریک",
+    title: "کارخانه‌ی نوآوری سیلیکون شریف — اکوسیستم شتاب‌دهی و فضای کاری هوشمند",
+    img: "banner3.jpg",
+    alt: "بنر کارخانه‌ی نوآوری سیلیکون شریف",
+    cta: "مشاهده سایت ↗",
+    link: "https://siliconsharif.ir"
+    // بدون until = همیشه نمایش داده می‌شود
+  },
+  {
+    tag: "پروژه اکوسیستم",
+    title: "رام‌کننده — بازار پرامپت‌های حرفه‌ای برای انسان و ایجنت‌های هوش مصنوعی",
+    img: "banner4.jpg",
+    alt: "بنر رام‌کننده — سوارکار در حال رام‌کردن اسب وحشی هوش مصنوعی",
+    cta: "مشاهده رام‌کننده ↗",
+    link: "https://parvizrahayan.github.io/tamer/"
+    // بدون until = همیشه نمایش داده می‌شود
+  }
+];
+
+function renderBanners(){
+  const grid = document.getElementById('bannersGrid');
+  const wrap = document.getElementById('bannersWrap');
+  const now = new Date();
+  const active = BANNERS.filter(b => !b.until || new Date(b.until) >= now);
+  if(!active.length){ wrap.style.display = 'none'; return; }
+  grid.innerHTML = active.map(b => `
+    <div class="b corner" style="position:relative;overflow:hidden;border-radius:16px;background:rgba(255,255,255,0.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:22px 26px;display:flex;flex-direction:column;">
+      <div style="position:relative;z-index:1;">
+        <img src="${b.img}" alt="${b.alt}" style="width:100%;height:auto;border-radius:10px;display:block;margin-bottom:16px;">
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;z-index:1;margin-top:auto;">
+        <div>
+          <div class="tag on" style="margin-bottom:6px;display:inline-block;">${b.tag}</div>
+          <div style="font-weight:800;font-size:15px;">${b.title}</div>
+        </div>
+        <a href="${b.link}" target="_blank" rel="noopener" class="btn mono" style="text-decoration:none;flex-shrink:0;background:var(--orange);color:#fff;border-color:var(--orange);">${b.cta}</a>
+      </div>
+    </div>
+  `).join('');
+}
+renderBanners();
+</script>
+
+
+<!-- NAV -->
+<header class="b-b">
+  <div class="wrap flex items-center justify-between py-4" style="display:flex;">
+    <div class="flex items-center gap-2" style="display:flex;align-items:center;gap:8px;">
+      <svg width="22" height="22" viewBox="0 0 22 22"><rect x="1" y="1" width="20" height="20" rx="4" fill="none" stroke="#141414" stroke-width="1.5"/><circle cx="11" cy="11" r="3" fill="#F0541F"/></svg>
+      <span style="font-weight:900;font-size:17px;line-height:1;font-family:'Vazirmatn',sans-serif;">پرویز معین<br><span class="mono" style="font-weight:400;font-size:9px;color:var(--ink-soft);letter-spacing:.04em;">parvizmoin.ir</span></span>
+    </div>
+    <nav id="siteNav" class="mono" style="display:flex;gap:26px;font-size:12px;letter-spacing:.03em;align-items:center;">
+      <a href="#" style="display:flex;align-items:center;gap:5px;text-decoration:none;color:inherit;"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.4"><path d="M2 8l6-5 6 5M4 7v6h8V7"/></svg>خانه</a>
+      <a href="#works" style="display:flex;align-items:center;gap:5px;text-decoration:none;color:inherit;"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.4"><rect x="2" y="2" width="5" height="5"/><rect x="9" y="2" width="5" height="5"/><rect x="2" y="9" width="5" height="5"/><rect x="9" y="9" width="5" height="5"/></svg>آثار</a>
+      <a href="#activity" style="display:flex;align-items:center;gap:5px;text-decoration:none;color:inherit;"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.4"><path d="M2 12l3-6 3 4 2-7 4 9"/></svg>فعالیت</a>
+      <a href="#newsroom" style="display:flex;align-items:center;gap:5px;text-decoration:none;color:inherit;"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>فناوری</a>
+      <a href="#contact" style="display:flex;align-items:center;gap:5px;text-decoration:none;color:inherit;"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.4"><path d="M2 3h12v8H6l-4 3z"/></svg>ارتباط</a>
+    </nav>
+    <div class="flex gap-1" style="display:flex;gap:4px;">
+      <a href="https://parvizmoin.ir/" class="tag on" style="text-decoration:none;">FA</a><a href="https://en.parvizmoin.ir/" class="tag" style="text-decoration:none;">EN</a><a href="https://de.parvizmoin.ir/" class="tag" style="text-decoration:none;">DE</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="wrap b-b" style="padding:60px 24px 0;position:relative;overflow:hidden;">
+  <svg class="mesh-decor" style="top:-60px;left:-40px;width:420px;height:420px;" viewBox="0 0 300 300" fill="none" stroke-width="1">
+    <ellipse cx="150" cy="150" rx="130" ry="120" stroke-width="1.2"/>
+    <path d="M20 150 Q150 60 280 150 Q150 240 20 150Z"/>
+    <path d="M60 60 Q150 150 60 240"/>
+    <path d="M240 60 Q150 150 240 240"/>
+    <path d="M150 30 Q80 150 150 270"/>
+    <path d="M150 30 Q220 150 150 270"/>
+    <circle cx="150" cy="150" r="55"/>
+    <circle cx="150" cy="150" r="90"/>
+  </svg>
+  <div class="grid-2" style="display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;position:relative;z-index:1;">
+    <div>
+      <div class="tag" style="margin-bottom:16px;">IDEA &amp; RESEARCH</div>
+      <h1 style="font-size:56px;font-weight:900;line-height:1.15;margin:0 0 20px;">
+        فناوری در خدمت<br><span style="color:var(--orange)">رشد انسان</span>
+      </h1>
+      <p style="color:var(--ink-soft);font-size:16px;line-height:1.9;max-width:480px;">
+        پژوهشگر، فعال فناوری و نظریه‌پرداز — مجموعه‌ای از پروژه‌ها در مسیر صلح، طبیعت و شکوفایی انسان.
+      </p>
+      <div style="display:flex;gap:10px;margin-top:28px;">
+        <button class="btn primary">مشاهده آثار ↗</button>
+        <button class="btn">درباره من</button>
+      </div>
+    </div>
+
+    <!-- ویجت تقویم فعالیت (رفرنس ۱) — تاریخ زنده، هرگز دستی -->
+    <div class="b corner" style="background:var(--card);border-radius:14px;padding:22px;">
+      <div class="mono" style="font-size:11px;color:var(--ink-soft);margin-bottom:2px;">TODAY</div>
+      <div id="todayNum" style="font-size:48px;font-weight:900;line-height:1;">--</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;">
+        <span id="todayMonth" style="font-weight:700;">--</span>
+        <span id="todayYear" class="mono" style="font-size:11px;color:var(--ink-soft);">----</span>
+      </div>
+      <div class="mono" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;font-size:9px;color:var(--ink-soft);text-align:center;margin-bottom:6px;">
+        <span>ش</span><span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span>
+      </div>
+      <div id="activityGrid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKS: کارت‌های سبک پرتفولیوی رفرنس ۳ -->
+<section id="works" class="wrap" style="padding:56px 24px;">
+  <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:28px;" class="b-b">
+    <div style="padding-bottom:16px;">
+      <div class="tag" style="margin-bottom:10px;">PORTFOLIO</div>
+      <h2 style="font-size:30px;font-weight:900;margin:0;">آثار</h2>
+    </div>
+    <div class="mono" style="font-size:11px;color:var(--ink-soft);padding-bottom:16px;">۰۶ پروژه</div>
+  </div>
+
+  <div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" id="worksGrid">
+    <a href="https://parvizrahayan.github.io/" target="_blank" rel="noopener" class="b corner" style="text-decoration:none;color:inherit;display:block;border-radius:10px;padding:18px;background:var(--card);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">
+        <svg width="28" height="28" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.3"><path d="M4 4h8v8h-8z M8 4v8" /></svg>
+        <span class="tag on">در حال اجرا</span>
+      </div>
+      <div style="font-weight:800;font-size:17px;margin-bottom:4px;">بازار</div>
+      <div class="mono" style="font-size:11px;color:var(--ink-soft);">سایت شخصی</div>
+    </a>
+    <a href="https://parvizrahayan.github.io/odyssey/" target="_blank" rel="noopener" class="b corner" style="text-decoration:none;color:inherit;display:block;border-radius:10px;padding:18px;background:var(--card);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">
+        <svg width="28" height="28" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.3"><path d="M4 4h8 M4 8h5 M4 12h8" /></svg>
+        <span class="tag on">در حال اجرا</span>
+      </div>
+      <div style="font-weight:800;font-size:17px;margin-bottom:4px;">اودیسه</div>
+      <div class="mono" style="font-size:11px;color:var(--ink-soft);">سه‌گانه فرهنگی</div>
+    </a>
+    <a href="https://parvizrahayan.github.io/donyashoon/" target="_blank" rel="noopener" class="b corner" style="text-decoration:none;color:inherit;display:block;border-radius:10px;padding:18px;background:var(--card);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">
+        <svg width="28" height="28" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.3"><circle cx="8" cy="8" r="4"/></svg>
+        <span class="tag on">در حال اجرا</span>
+      </div>
+      <div style="font-weight:800;font-size:17px;margin-bottom:4px;">دنیاشون</div>
+      <div class="mono" style="font-size:11px;color:var(--ink-soft);">شعر و فناوری</div>
+    </a>
+    <a href="https://parvizrahayan.github.io/azmoon/" target="_blank" rel="noopener" class="b corner" style="text-decoration:none;color:inherit;display:block;border-radius:10px;padding:18px;background:var(--card);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">
+        <svg width="28" height="28" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.3"><path d="M4 3h8v10h-8z M6 6h4 M6 9h4"/></svg>
+        <span class="tag on">در حال اجرا</span>
+      </div>
+      <div style="font-weight:800;font-size:17px;margin-bottom:4px;">آزمون</div>
+      <div class="mono" style="font-size:11px;color:var(--ink-soft);">پلتفرم آموزش هوش‌مصنوعی</div>
+    </a>
+    <a href="https://parvizrahayan.github.io/mohor/" target="_blank" rel="noopener" class="b corner" style="text-decoration:none;color:inherit;display:block;border-radius:10px;padding:18px;background:var(--card);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">
+        <svg width="28" height="28" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.3"><path d="M4 4h4v4h-4z M8 8h4v4h-4z"/></svg>
+        <span class="tag">اجراشده</span>
+      </div>
+      <div style="font-weight:800;font-size:17px;margin-bottom:4px;">مهرها</div>
+      <div class="mono" style="font-size:11px;color:var(--ink-soft);">طراحی وکتور</div>
+    </a>
+    <a href="https://parvizrahayan.github.io/tamer/" target="_blank" rel="noopener" class="b corner" style="text-decoration:none;color:inherit;display:block;border-radius:10px;padding:18px;background:var(--card);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">
+        <svg width="28" height="28" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.3"><path d="M4 4l8 8 M12 4l-8 8"/></svg>
+        <span class="tag on">در حال اجرا</span>
+      </div>
+      <div style="font-weight:800;font-size:17px;margin-bottom:4px;">رام‌کننده</div>
+      <div class="mono" style="font-size:11px;color:var(--ink-soft);">هوش مصنوعی</div>
+    </a>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:end;margin:44px 0 22px;" class="b-b">
+    <div style="padding-bottom:16px;">
+      <div class="tag" style="margin-bottom:10px;">BIBLIOGRAPHY</div>
+      <h2 style="font-size:22px;font-weight:900;margin:0;">کتاب‌ها</h2>
+    </div>
+    <div class="mono" style="font-size:11px;color:var(--ink-soft);padding-bottom:16px;">۰۵ عنوان</div>
+  </div>
+  <div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" id="booksGrid">
+    <div class="b corner" style="border-radius:10px;padding:18px;background:var(--card);display:flex;gap:14px;align-items:flex-start;">
+      <svg width="26" height="26" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.3" style="flex-shrink:0;margin-top:2px;"><path d="M2 3h5a2 2 0 012 2v9a2 2 0 00-2-1H2z M14 3H9a2 2 0 00-2 2v9a2 2 0 012-1h5z"/></svg>
+      <div style="flex:1;">
+        <span class="tag" style="margin-bottom:8px;display:inline-block;">کتاب</span>
+        <div style="font-weight:800;font-size:15px;line-height:1.5;">فناوری زندگی دوباره</div>
+        <p style="font-size:11.5px;color:var(--ink-soft);line-height:1.8;margin:6px 0 0;">هر فناوری هم دارو است هم زهر — این‌که کدام کیهان‌شناسی پشتِ هر ابزار نشسته، و این‌که «زندگیِ دوباره» با پرسیدن آغاز می‌شود، نه با ماشینِ تازه.</p>
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <button class="buy-btn" style="margin-top:0;" onclick="buySoon(this)"><span class="buy-fill"></span><span class="buy-label">خرید ↗</span></button>
+          <button class="buy-btn" style="margin-top:0;" onclick="openLibrary('book1')"><span class="buy-label">مطالعه در کتابخانه ↗</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="b corner" style="border-radius:10px;padding:18px;background:var(--card);display:flex;gap:14px;align-items:flex-start;">
+      <svg width="26" height="26" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.3" style="flex-shrink:0;margin-top:2px;"><path d="M2 3h5a2 2 0 012 2v9a2 2 0 00-2-1H2z M14 3H9a2 2 0 00-2 2v9a2 2 0 012-1h5z"/></svg>
+      <div style="flex:1;">
+        <span class="tag" style="margin-bottom:8px;display:inline-block;">کتاب</span>
+        <div style="font-weight:800;font-size:15px;line-height:1.5;">خالص‌ترین اقدامات فلسفه‌ی فناوری</div>
+        <p style="font-size:11.5px;color:var(--ink-soft);line-height:1.8;margin:6px 0 0;">خالص‌ترین کنش، شتاب نیست؛ توقفِ پرسشگرانه‌ای‌ست پیش از لمسِ هر دکمه — پیش از آن‌که ابزاری، بی‌آن‌که بدانیم، ما را از نو بسازد.</p>
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <button class="buy-btn" style="margin-top:0;" onclick="buySoon(this)"><span class="buy-fill"></span><span class="buy-label">خرید ↗</span></button>
+          <button class="buy-btn" style="margin-top:0;" onclick="openLibrary('book2')"><span class="buy-label">مطالعه در کتابخانه ↗</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="b corner" style="border-radius:10px;padding:18px;background:var(--card);display:flex;gap:14px;align-items:flex-start;">
+      <svg width="26" height="26" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.3" style="flex-shrink:0;margin-top:2px;"><path d="M2 3h5a2 2 0 012 2v9a2 2 0 00-2-1H2z M14 3H9a2 2 0 00-2 2v9a2 2 0 012-1h5z"/></svg>
+      <div style="flex:1;">
+        <span class="tag" style="margin-bottom:8px;display:inline-block;">کتاب</span>
+        <div style="font-weight:800;font-size:15px;line-height:1.5;">سفری به سفر</div>
+        <div class="mono" style="font-size:10px;color:var(--ink-soft);margin-top:4px;">نگاهی فلسفی به انقلاب‌های تکنولوژیک</div>
+        <p style="font-size:11.5px;color:var(--ink-soft);line-height:1.8;margin:6px 0 0;">یک تاریخِ موازی: اگر انقلاب صنعتی با برق آغاز می‌شد نه بخار، جهانِ امروز چه شکلی داشت؟</p>
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <button class="buy-btn" style="margin-top:0;" onclick="buySoon(this)"><span class="buy-fill"></span><span class="buy-label">خرید ↗</span></button>
+          <button class="buy-btn" style="margin-top:0;" onclick="openLibrary('book3')"><span class="buy-label">مطالعه در کتابخانه ↗</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="b corner" style="border-radius:10px;padding:18px;background:var(--card);display:flex;gap:14px;align-items:flex-start;">
+      <svg width="26" height="26" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.3" style="flex-shrink:0;margin-top:2px;"><path d="M2 3h5a2 2 0 012 2v9a2 2 0 00-2-1H2z M14 3H9a2 2 0 00-2 2v9a2 2 0 012-1h5z"/></svg>
+      <div style="flex:1;">
+        <span class="tag" style="margin-bottom:8px;display:inline-block;">کتاب</span>
+        <div style="font-weight:800;font-size:15px;line-height:1.5;">جاری‌سازی فناوری؛ این‌بار AI</div>
+        <div class="mono" style="font-size:10px;color:var(--ink-soft);margin-top:4px;">جلد اول</div>
+        <p style="font-size:11.5px;color:var(--ink-soft);line-height:1.8;margin:6px 0 0;">برای نخستین‌بار با فناوری‌ای روبه‌روییم که می‌تواند درباره‌ی خودش سخن بگوید — این جریانِ تازه به کدام سو می‌رود؟</p>
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <button class="buy-btn" style="margin-top:0;" onclick="buySoon(this)"><span class="buy-fill"></span><span class="buy-label">خرید ↗</span></button>
+          <button class="buy-btn" style="margin-top:0;" onclick="openLibrary('book4')"><span class="buy-label">مطالعه در کتابخانه ↗</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="b corner" style="border-radius:10px;padding:18px;background:var(--card);display:flex;gap:14px;align-items:flex-start;">
+      <svg width="26" height="26" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.3" style="flex-shrink:0;margin-top:2px;"><path d="M2 3h5a2 2 0 012 2v9a2 2 0 00-2-1H2z M14 3H9a2 2 0 00-2 2v9a2 2 0 012-1h5z"/></svg>
+      <div style="flex:1;">
+        <span class="tag" style="margin-bottom:8px;display:inline-block;">کتاب</span>
+        <div style="font-weight:800;font-size:15px;line-height:1.5;">تلاش‌هایی که دیگر کوچک نیستند</div>
+        <div class="mono" style="font-size:10px;color:var(--ink-soft);margin-top:4px;">جلد دوم</div>
+        <p style="font-size:11.5px;color:var(--ink-soft);line-height:1.8;margin:6px 0 0;">وقتی هوش مصنوعی از آزمایشگاه به زیرساختِ کلِ تمدن بدل می‌شود، مقیاسِ سرمایه دیگر فقط عدد نیست — شکلِ اراده‌ی ماست.</p>
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <button class="buy-btn" style="margin-top:0;" onclick="buySoon(this)"><span class="buy-fill"></span><span class="buy-label">خرید ↗</span></button>
+          <button class="buy-btn" style="margin-top:0;" onclick="openLibrary('book5')"><span class="buy-label">مطالعه در کتابخانه ↗</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- پنل زنده: سبک اپ لایتینگ (رفرنس ۲) -->
+<section id="activity" class="b-t b-b" style="background:var(--card);">
+  <div class="wrap" style="padding:48px 24px;">
+    <div class="tag" style="margin-bottom:10px;">LIVE</div>
+    <h2 style="font-size:26px;font-weight:900;margin:0 0 24px;">فعالیت زنده</h2>
+
+    <div class="grid-2" style="display:grid;grid-template-columns:1fr 1.4fr;gap:16px;">
+      <div class="b" style="border-radius:10px;padding:18px;background:var(--bone);">
+        <div class="mono" style="font-size:11px;color:var(--ink-soft);margin-bottom:14px;">پروژه‌های در حال اجرا</div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ddd8cc;"><span>بازار</span><span class="mono" style="font-size:11px;">ON</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ddd8cc;"><span>اودیسه</span><span class="mono" style="font-size:11px;">ON</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;"><span>دنیاشون</span><span class="mono" style="font-size:11px;">ON</span></div>
+      </div>
+
+      <div class="b" style="border-radius:10px;padding:18px;background:var(--bone);">
+        <div class="mono" style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">ANALYTICS</div>
+        <div style="font-size:13px;margin-bottom:14px;">میزان فعالیت هفتگی روی پروژه‌ها</div>
+        <svg viewBox="0 0 320 100" width="100%" height="100">
+          <g id="barsG"></g>
+          <line x1="0" y1="99" x2="320" y2="99" stroke="#141414" stroke-width="1"/>
+        </svg>
+        <div class="mono" style="display:flex;justify-content:space-between;font-size:9px;color:var(--ink-soft);margin-top:4px;">
+          <span>ش</span><span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- شگفتانه: نبض LLM -->
+<section class="wrap b-b" style="padding:48px 24px;">
+  <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:8px;">
+    <div>
+      <div class="tag" style="margin-bottom:10px;">SURPRISE</div>
+      <h2 style="font-size:26px;font-weight:900;margin:0;">نبض LLM</h2>
+    </div>
+    <div class="mono" id="pulseDate" style="font-size:11px;color:var(--ink-soft);">--</div>
+  </div>
+  <p style="color:var(--ink-soft);font-size:13px;margin:6px 0 22px;">چهار روایت از دنیای مدل‌های زبانی بزرگ — تولد، رشد، رقابت، یکتایی.</p>
+
+  <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+    <div class="b corner" style="border-radius:10px;padding:16px;background:var(--card);">
+      <span class="tag on" style="margin-bottom:12px;display:inline-block;">تولد</span>
+      <p style="font-size:12.5px;line-height:1.8;margin:0;">مدل‌های تازه هر چند هفته متولد می‌شوند — از رونمایی گوگل روی یک مدل تبدیل گفتار به متن، تا ابزارهای متن‌باز که ساخت خط‌تولیدهای چندرسانه‌ای هوش مصنوعی را برای همه ساده‌تر کرده‌اند.</p>
+    </div>
+    <div class="b corner" style="border-radius:10px;padding:16px;background:var(--card);">
+      <span class="tag on" style="margin-bottom:12px;display:inline-block;">رشد</span>
+      <p style="font-size:12.5px;line-height:1.8;margin:0;">مدل‌های کوچک امروز، کاری را انجام می‌دهند که یک سال پیش فقط از مدل‌های چند برابر بزرگ‌تر برمی‌آمد؛ عمق استدلال و کارایی، محور اصلی رشد این روزها هستند.</p>
+    </div>
+    <div class="b corner" style="border-radius:10px;padding:16px;background:var(--card);">
+      <span class="tag on" style="margin-bottom:12px;display:inline-block;">رقابت</span>
+      <p style="font-size:12.5px;line-height:1.8;margin:0;">قیمت دسترسی به مدل‌های پیشرو تقریباً نصف شده و موازنه‌ی قدرت میان آزمایشگاه‌ها و جغرافیاهای مختلف پیوسته در حال جابه‌جایی‌ست؛ مدل‌های متن‌باز هم دارند فاصله‌شان را با مدل‌های اختصاصی کم می‌کنند.</p>
+    </div>
+    <div class="b corner" style="border-radius:10px;padding:16px;background:var(--card);">
+      <span class="tag on" style="margin-bottom:12px;display:inline-block;">یکتایی</span>
+      <p style="font-size:12.5px;line-height:1.8;margin:0;">دوران مدل‌های همه‌کاره در حال جای‌دادن به مدل‌های تخصصیِ حوزه‌محور است؛ در کنارش قوانین تازه‌ی شفافیت هوش مصنوعی در اروپا هم مسیر تمایز و افشای مدل‌ها را عوض کرده.</p>
+    </div>
+  </div>
+  <div class="b" style="border-radius:10px;padding:16px;margin-top:16px;background:var(--card);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <span class="mono" style="font-size:10px;color:var(--ink-soft);">● LIVE — همین حالا از دنیای LLM</span>
+      <span class="mono" id="pulseLiveStatus" style="font-size:10px;color:var(--ink-soft);">در حال دریافت...</span>
+    </div>
+    <div id="pulseLiveList" style="display:flex;flex-direction:column;gap:8px;"></div>
+  </div>
+</section>
+
+
+
+<!-- اتاق خبر: طراحی کارتی مدرن، تجمیع خودکار -->
+<section id="newsroom" class="wrap b-b" style="padding:48px 24px;">
+  <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:20px;">
+    <div>
+      <div class="tag" style="margin-bottom:10px;">NEWSROOM</div>
+      <h2 style="font-size:26px;font-weight:900;margin:0;">اتاق خبر هوش مصنوعی</h2>
+    </div>
+    <button class="btn mono" style="font-size:11px;padding:6px 12px;display:flex;align-items:center;gap:6px;" onclick="loadNewsroom()">
+      <span id="newsroomSpin" style="display:inline-block;">↻</span>بروزرسانی
+    </button>
+  </div>
+  <div id="newsroomGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;">
+    <div class="mono" style="font-size:11px;color:var(--ink-soft);grid-column:1/-1;">در حال دریافت...</div>
+  </div>
+</section>
+<!-- فناوری و انسان: موتیف دیاگرام فنی (رفرنس ۴) -->
+<section class="wrap b-b" style="padding:56px 24px;position:relative;overflow:hidden;">
+  <svg class="mesh-decor" style="bottom:-80px;right:-60px;width:380px;height:380px;" viewBox="0 0 300 300" fill="none" stroke-width="1">
+    <ellipse cx="150" cy="150" rx="120" ry="130" stroke-width="1.2"/>
+    <path d="M40 100 Q150 200 260 100"/>
+    <path d="M40 200 Q150 100 260 200"/>
+    <path d="M100 20 Q160 150 100 280"/>
+    <path d="M200 20 Q140 150 200 280"/>
+    <circle cx="150" cy="150" r="70"/>
+  </svg>
+  <div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative;z-index:1;">
+    <div>
+      <div class="tag" style="margin-bottom:10px;">BELIEF</div>
+      <h2 style="font-size:28px;font-weight:900;margin:0 0 16px;">فناوری در خدمت انسان</h2>
+      <p style="color:var(--ink-soft);line-height:1.9;">
+        باور من این است که فناوری، از جمله هوش مصنوعی، باید در مسیر رشد و شکوفایی انسان و حفظ طبیعت به‌کار گرفته شود —
+        نه صرفاً ابزار سود. اکوسیستم پروژه‌های من از همین باور شکل گرفته‌اند.
+      </p>
+    </div>
+    <svg viewBox="0 0 300 220" width="100%" height="auto">
+      <g stroke="#141414" stroke-width="1.3" fill="none">
+        <line x1="150" y1="20" x2="150" y2="200"/>
+        <line x1="30" y1="150" x2="270" y2="90"/>
+        <line x1="30" y1="90" x2="270" y2="150"/>
+        <circle cx="150" cy="110" r="5" fill="#141414"/>
+        <circle cx="150" cy="20" r="4"/><circle cx="150" cy="200" r="4"/>
+        <circle cx="30" cy="150" r="4"/><circle cx="270" cy="90" r="4"/>
+        <circle cx="30" cy="90" r="4"/><circle cx="270" cy="150" r="4"/>
+        <circle cx="150" cy="110" r="4" fill="#F0541F" stroke="#F0541F"/>
+      </g>
+      <g class="mono" font-size="9" fill="#6B6B66">
+        <text x="154" y="18">+y</text><text x="154" y="212">-y</text>
+        <text x="14" y="150">+x</text><text x="274" y="90">-x</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ارتباط -->
+<section id="contact" class="wrap" style="padding:56px 24px 80px;">
+  <div class="b corner" style="border-radius:14px;padding:36px;background:var(--card);text-align:center;">
+    <div class="tag" style="margin:0 auto 12px;display:inline-block;">CONTACT</div>
+    <h2 style="font-size:26px;font-weight:900;margin:0 0 8px;">سلام! وقت بخیر و خوش‌آمدید!</h2>
+    <p style="color:var(--ink-soft);margin-bottom:24px;">برای همکاری، گفتگو درباره‌ی یکی از آثار، یا صرفاً آشنایی.</p>
+    <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+      <a href="https://t.me/Sirparviz" target="_blank" rel="noopener" class="btn" style="display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.4"><path d="M2 8l12-5-4 12-3-5-5-2z"/></svg>تلگرام</a>
+      <a href="tel:+989133180172" class="btn" style="display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.4"><path d="M3 2c1 0 2 3 1 4l-1 1c1 3 3 5 6 6l1-1c1-1 4 0 4 1v2c0 1-1 1-2 1-6 0-11-5-11-11 0-1 0-2 1-2z"/></svg>۰۹۱۳۳۱۸۰۱۷۲</a>
+      <a href="https://esfahan.irannsr.org/s/mfakNjl" target="_blank" rel="noopener" class="btn" style="display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink);"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="1.4"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 6h6M5 9h4"/></svg>پروفایل نظام صنفی رایانه‌ای</a>
+    </div>
+  </div>
+</section>
+
+<footer class="b-t mono" style="text-align:center;font-size:11px;color:var(--ink-soft);padding:20px;">© 2026 PARVIZ MOIN</footer>
+
+<!-- کتابخانه: مطالعه‌ی کامل کتاب‌ها برای بازدیدکننده‌ی علاقه‌مند -->
+<div id="libraryOverlay" onclick="if(event.target===this) closeLibrary()">
+  <div id="libraryPanel">
+    <button class="lib-close" onclick="closeLibrary()">✕</button>
+    <span class="tag on" style="margin-bottom:10px;display:inline-block;">کتابخانه</span>
+    <h3 id="libTitle"></h3>
+    <div class="mono" id="libSub" style="font-size:11px;color:var(--ink-soft);margin-bottom:20px;"></div>
+    <div id="libBody"></div>
+  </div>
+</div>
+
+<script>
+// ===== تقویم فعالیت — همیشه از ساعت واقعی مرورگر محاسبه می‌شود، هیچ تاریخی دستی نیست =====
+// از تقویم جلالی درون‌ساخت Intl استفاده می‌کنیم (fa-IR-u-ca-persian)، پس نیازی به کتابخانه‌ی خارجی نیست
+// و هرگز نمی‌تواند "قدیمی" بشود چون هر بار صفحه باز میشه از new Date() واقعی محاسبه میشه.
+const faCal = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {year:'numeric', month:'numeric', day:'numeric'});
+function faToLatinDigits(s){
+  return s.replace(/[۰-۹]/g, c => '۰۱۲۳۴۵۶۷۸۹'.indexOf(c));
+}
+function jalaliParts(d){
+  const parts = faCal.formatToParts(d);
+  const o = {};
+  parts.forEach(p=>{ if(p.type!=='literal') o[p.type]=parseInt(faToLatinDigits(p.value),10); });
+  return o; // {year, month, day} — اعداد جلالی واقعی
+}
+const monthNames=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+const faDigits=['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+function toFaNum(n){ return String(n).split('').map(c=> faDigits[c] ?? c).join(''); }
+
+const now = new Date();
+const today = jalaliParts(now);
+
+// پیدا کردن گرگوریِ روزِ اول همین ماه جلالی، با عقب‌رفتن روز‌به‌روز تا day===1
+let cursor = new Date(now);
+while(jalaliParts(cursor).day !== 1){
+  cursor.setDate(cursor.getDate()-1);
+}
+const firstDayGregorian = new Date(cursor);
+// شمارش تعداد روزهای ماه: جلو رفتن تا وقتی ماه عوض بشه
+let daysInMonth=0;
+let probe=new Date(firstDayGregorian);
+while(jalaliParts(probe).month === today.month){
+  daysInMonth++;
+  probe.setDate(probe.getDate()+1);
+}
+// ستون هفته‌ی روز اول ماه (هفته‌ی ایرانی: شنبه=۰ ... جمعه=۶)
+const jsDay = firstDayGregorian.getDay(); // یکشنبه=۰ ... شنبه=۶
+const firstCol = (jsDay+1)%7;
+
+document.getElementById('todayNum').textContent = toFaNum(today.day);
+document.getElementById('todayMonth').textContent = monthNames[today.month-1];
+document.getElementById('todayYear').textContent = toFaNum(today.year);
+document.getElementById('pulseDate').textContent = 'به‌روز تا ' + toFaNum(today.day) + ' ' + monthNames[today.month-1] + ' ' + toFaNum(today.year);
+
+// ===== نبض LLM زنده — از یک API عمومیِ واقعی و رایگان (Hacker News)، بدون نیاز به بک‌اند یا کلید =====
+async function loadLivePulse(){
+  const statusEl = document.getElementById('pulseLiveStatus');
+  const listEl = document.getElementById('pulseLiveList');
+  try{
+    const idsRes = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
+    const ids = (await idsRes.json()).slice(0, 60);
+    const items = await Promise.all(ids.map(id =>
+      fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(r=>r.json()).catch(()=>null)
+    ));
+    const keywords = /\b(LLM|GPT|Claude|Gemini|OpenAI|Anthropic|LLaMA|language model|AI model|transformer)\b/i;
+    const matched = items.filter(it => it && it.title && keywords.test(it.title)).slice(0,4);
+
+    if(matched.length===0){
+      statusEl.textContent = 'موردی پیدا نشد';
+      listEl.innerHTML = '<div class="mono" style="font-size:11px;color:var(--ink-soft);">در حال حاضر خبر تازه‌ای با این کلیدواژه‌ها روی Hacker News نبود.</div>';
+      return;
+    }
+    statusEl.textContent = toFaNum(matched.length) + ' مورد · اکنون';
+    listEl.innerHTML='';
+    matched.forEach(it=>{
+      const row=document.createElement('a');
+      row.href = it.url || `https://news.ycombinator.com/item?id=${it.id}`;
+      row.target='_blank'; row.rel='noopener';
+      row.style.cssText='display:flex;justify-content:space-between;gap:10px;text-decoration:none;color:var(--ink);font-size:12.5px;padding:6px 0;border-bottom:1px solid #ddd8cc;';
+      row.innerHTML = `<span>${it.title}</span><span class="mono" style="font-size:10px;color:var(--ink-soft);flex-shrink:0;">↗ HN</span>`;
+      listEl.appendChild(row);
+    });
+  }catch(e){
+    statusEl.textContent = 'قطع اتصال';
+    listEl.innerHTML = '<div class="mono" style="font-size:11px;color:var(--ink-soft);">اتصال برقرار نشد — لطفاً بعداً دوباره سر بزنید.</div>';
+  }
+}
+loadLivePulse();
+
+// ===== Newsroom v2: کارت‌های مدرن، ترکیب Algolia HN Search + Dev.to =====
+function newsroomTimeAgo(unixSeconds){
+  const diff = Math.floor(Date.now()/1000) - unixSeconds;
+  if(diff < 90) return 'همین حالا';
+  if(diff < 3600) return Math.floor(diff/60) + ' دقیقه پیش';
+  if(diff < 86400) return Math.floor(diff/3600) + ' ساعت پیش';
+  return Math.floor(diff/86400) + ' روز پیش';
+}
+async function loadNewsroom(){
+  const grid = document.getElementById('newsroomGrid');
+  const spin = document.getElementById('newsroomSpin');
+  spin.style.animation = 'spin 0.8s linear infinite';
+  grid.innerHTML = `<div class="mono" style="font-size:11px;color:var(--ink-soft);grid-column:1/-1;">${ 'در حال دریافت...' }</div>`;
+  try{
+    const [hnRes, devtoRes] = await Promise.allSettled([
+      fetch('https://hn.algolia.com/api/v1/search_by_date?query=AI%20OR%20LLM%20OR%20GPT%20OR%20Claude%20OR%20OpenAI%20OR%20Anthropic&tags=story&hitsPerPage=8').then(r=>r.json()),
+      fetch('https://dev.to/api/articles?tag=ai&per_page=8').then(r=>r.json())
+    ]);
+    let items = [];
+    if(hnRes.status==='fulfilled' && hnRes.value && hnRes.value.hits){
+      items.push(...hnRes.value.hits.filter(h=>h.title && (h.url||h.objectID)).map(h => ({
+        title: h.title,
+        url: h.url || `https://news.ycombinator.com/item?id=${h.objectID}`,
+        ts: h.created_at_i,
+        accent: '#e0622c'
+      })));
+    }
+    if(devtoRes.status==='fulfilled' && Array.isArray(devtoRes.value)){
+      items.push(...devtoRes.value.filter(a=>a.title && a.url).map(a => ({
+        title: a.title,
+        url: a.url,
+        ts: Math.floor(new Date(a.published_at||a.published_timestamp||Date.now()).getTime()/1000),
+        accent: '#1a7a5e'
+      })));
+    }
+    items.sort((a,b)=>b.ts-a.ts);
+    items = items.slice(0,10);
+    spin.style.animation = '';
+    if(items.length===0){
+      grid.innerHTML = `<div class="mono" style="font-size:11px;color:var(--ink-soft);grid-column:1/-1;">${ 'فعلاً موردی نیست — بعداً دوباره سر بزن.' }</div>`;
+      return;
+    }
+    grid.innerHTML = items.map(it => `
+      <a href="${it.url}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:var(--ink);background:var(--card);border-radius:10px;padding:14px;border-top:3px solid ${it.accent};transition:transform .15s;">
+        <div style="font-size:13px;font-weight:700;line-height:1.5;margin-bottom:10px;">${it.title}</div>
+        <div class="mono" style="font-size:10px;color:var(--ink-soft);">${newsroomTimeAgo(it.ts)} ↗</div>
+      </a>`).join('');
+  }catch(e){
+    spin.style.animation = '';
+    grid.innerHTML = `<div class="mono" style="font-size:11px;color:var(--ink-soft);grid-column:1/-1;">${ 'اتصال برقرار نشد — چند لحظه دیگر دوباره امتحان کن.' }</div>`;
+  }}
+loadNewsroom();
+
+
+const grid=document.getElementById('activityGrid');
+for(let cell=0; cell<35; cell++){
+  const dayNum = cell - firstCol + 1;
+  const d=document.createElement('div');
+  if(dayNum<1 || dayNum>daysInMonth){
+    d.style.cssText='width:100%;aspect-ratio:1;';
+  } else if(dayNum===today.day){
+    d.style.cssText='width:100%;aspect-ratio:1;border-radius:50%;background:#F0541F;';
+  } else if(dayNum<today.day){
+    d.style.cssText='width:100%;aspect-ratio:1;border-radius:50%;background:#141414;';
+  } else {
+    d.style.cssText='width:100%;aspect-ratio:1;border-radius:50%;background:#D8D4C8;';
+  }
+  grid.appendChild(d);
+}
+
+// نمودار میله‌ای آنالیتیکس
+const barsG=document.getElementById('barsG');
+const vals=[40,65,50,80,55,30,70];
+vals.forEach((v,i)=>{
+  const x=10+i*44;
+  const h=v*0.9;
+  const bar=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  bar.setAttribute('x',x); bar.setAttribute('y',99-h);
+  bar.setAttribute('width',18); bar.setAttribute('height',h);
+  bar.setAttribute('fill', i===3? '#F0541F':'#141414');
+  barsG.appendChild(bar);
+});
+
+// دکمه‌ی خرید کتاب‌ها: هنوز فروشگاهی وصل نیست
+function buySoon(btn){
+  if(btn.dataset.busy) return;
+  btn.dataset.busy='1';
+  const fill=btn.querySelector('.buy-fill');
+  const label=btn.querySelector('.buy-label');
+  label.textContent='در حال آماده‌سازی...';
+  requestAnimationFrame(()=>{ fill.style.width='92%'; });
+  setTimeout(()=>{
+    label.textContent='۹۲٪ — به‌زودی';
+    btn.style.borderColor='var(--orange)';
+    btn.style.color='var(--orange)';
+  }, 1500);
+}
+
+// ===== کتابخانه: متن کامل هر کتاب برای بازدیدکننده‌ی علاقه‌مند =====
+const library = {
+  book1: {
+    title: 'فناوری زندگی دوباره',
+    sub: '',
+    paras: [
+      'فناوری ابزارِ ما نیست؛ گشودگیِ ماست. هر ماشینی که می‌سازیم، پیش از آن که چیزی را حل کند، راهی را در برابرمان می‌گشاید و راهی دیگر را برای همیشه می‌بندد. و هر تکنیکی داروست و زهر؛ در همان لحظه‌ای که حافظه‌ی ما را از بارِ یادآوری می‌رهاند، فراموشی را در ما نهادینه می‌کند، و درمانِ ما همان بیماریِ ماست.',
+      'زندگیِ دوباره اما نه با ماشینِ تازه، که با پرسشِ تازه آغاز می‌شود: این فناوری از کدام کیهان‌شناسی برخاسته و به کدام نظمِ اخلاقی بازمی‌گردد؟ هیچ تکنیکی بی‌وطن نیست، و هیچ ذهنی به‌راستی پاک نیست؛ هوش مصنوعی، در حقیقت، نه مصنوعی است نه هوشمند، بلکه توده‌ای از معدن، سوخت، کابل و عرقِ انسانی است که خود را به‌صورتِ «ذهنِ بی‌آلایش» به ما می‌فروشد. ماشین آینه‌ی ماست، و در آینه هرچه می‌بینیم بازتابِ خودِ ماست؛ اگر از آن وحشت داریم، از تصویرِ خودمان وحشت داریم، و اگر آن را می‌پرستیم، خود را می‌پرستیم.',
+      'خطرِ بزرگ، نه هوشِ ماشین، که اراده‌ی بی‌جهتِ ماست؛ ماشینی که از ما باهوش‌تر می‌شود هنوز نمی‌داند چرا هست، و ما نیز فراموش کرده‌ایم چرا هستیم. ما حتی دیگر در جهان زندگی نمی‌کنیم، بلکه در «محیطِ اطلاعاتی» زندگی می‌کنیم، و زندگیِ دوباره یعنی زیستنِ آگاهانه در این اقیانوسِ نو، نه غرق‌شدنِ خاموش در آن. چه آن‌که شفافیت آزادی نیست؛ نظمِ نوینی از انقیاد است که در آن، هرچه بیشتر خود را آشکار می‌کنیم، بیشتر به بردگیِ داده‌ی خود درمی‌آییم.',
+      'تکنیک از دستِ ما رها شده و سرنوشتِ خود را می‌زید، و زندگیِ دوباره یعنی بازپس‌گرفتنِ افسارِ همان چیزی که روزی خودِ ما بود. مرزِ انسان و ماشین فرو ریخته است، و در این آستانه، زندگیِ دوباره نه بازگشت به آن‌که بودیم، که زادنِ آن‌که هرگز نبوده‌ایم است.'
+    ]
+  },
+  book2: {
+    title: 'خالص‌ترین اقدامات فلسفه‌ی فناوری',
+    sub: '',
+    paras: [
+      'خالص‌ترین اقدام، آن نیست که از جهان می‌گسلد؛ آن است که در دلِ ماشین، هنوز پرسش را زنده نگه می‌دارد. هر ابزاری که برمی‌داریم، پیش از آن که کاری را انجام دهد، راهی را می‌گشاید و راهی دیگر را می‌بندد؛ و ما در همین گشودن و بستن، هر روز تصمیم می‌گیریم که چه‌کسی می‌خواهیم باشیم.',
+      'خالص‌ترین اقدام، نه شتابِ بی‌درنگ، که توقفِ پرسشگرانه است؛ لحظه‌ای که پیش از لمسِ دکمه، از خود می‌پرسیم این فناوری از کدام کیهان‌شناسی برخاسته و به کدام نظمِ اخلاقی بازمی‌گردد. زیرا هیچ تکنیکی بی‌وطن نیست، و هیچ ذهنی به‌راستی پاک نیست؛ هوش مصنوعی، در حقیقت، نه مصنوعی است نه هوشمند، بلکه توده‌ای از معدن، سوخت، کابل و عرقِ انسانی است که خود را به‌صورتِ «ذهنِ بی‌آلایش» به ما می‌فروشد. و ما که آن را می‌پرستیم، در حقیقت خود را می‌پرستیم؛ ماشین آینه‌ی ماست، و در آینه هرچه می‌بینیم بازتابِ خودِ ماست.',
+      'خالص‌ترین اقدام، آن است که در برابرِ شفافیتِ بی‌مرز، رازی را پاس دارد؛ چه شفافیت آزادی نیست، بلکه نظمِ نوینی از انقیاد است که در آن، هرچه بیشتر خود را آشکار می‌کنیم، بیشتر به بردگیِ داده‌ی خود درمی‌آییم. و خالص‌ترین اقدام، آن است که در برابرِ سرعت، آهستگی را برگزیند؛ زیرا تکنیک از دستِ ما رها شده و سرنوشتِ خود را می‌زید، و بازپس‌گرفتنِ افسارِ همان چیزی که روزی خودِ ما بود، خودِ خالص‌ترین کردار است.',
+      'مرزِ انسان و ماشین فرو ریخته است؛ و در این آستانه، خالص‌ترین اقدام نه بازگشت به آن‌که بودیم، که زادنِ آن‌که هرگز نبوده‌ایم است. هر بار که ابزاری برمی‌داریم، خود را می‌آفرینیم؛ و هر بار که آگاهانه برمی‌داریم، خالص‌ترین اقدامِ ممکن را انجام داده‌ایم: انسان‌ماندن در جهانی که مدام از ما می‌خواهد ماشین شویم.'
+    ]
+  },
+  book3: {
+    title: 'سفری به سفر',
+    sub: 'نگاهی فلسفی به انقلاب‌های تکنولوژیک',
+    paras: [
+      'در جهانی موازی، انقلابِ صنعتی نه با دودِ بخار، که با زمزمه‌ی الکتریسیته آغاز شد. تصور کن: پیش از آن‌که موتورِ بخار، ذغال را به قلبِ تمدن بدل کند، موتورِ الکتریکی از راه می‌رسد — سبک، بی‌دود، بی‌آتش، و بی‌آن‌که نیازی به انباشتنِ کارگران دورِ یک دیگِ مرکزی داشته باشد.',
+      'در آن جهان، کارخانه‌ها هرگز به‌صورتِ «مونوپولیِ مرکز» شکل نمی‌گرفتند؛ زیرا برق، برخلاف بخار، به‌راحتی در فضا پخش می‌شود و هر کارگاهِ کوچکی می‌تواند نیرویِ خود را داشته باشد. شهرها به‌جای آن‌که به‌گردِ دودکش‌های عظیم و محله‌های کارگریِ متراکم بچرخند، به شبکه‌ای از مراکزِ پراکنده و خودکفا بدل می‌شدند؛ روستاها خالی نمی‌شدند، بلکه برق‌دار می‌شدند.',
+      'شاید در آن جهان، مفهومِ «زمانِ صنعتیِ خطی» نیز شکل دیگری می‌گرفت؛ برق، آهسته‌تر و بی‌وقفه‌تر جریان دارد، و شاید ما هرگز به آن شتابِ انفجاریِ بخار که تاریخِ ما را به‌پیش راند، نمی‌رسیدیم. شاید انقلاب‌ها آرام‌تر بودند، شاید جنگ‌ها سبک‌تر، و انسانِ مدرن هرگز آن‌قدر از طبیعت جدا نمی‌شد.',
+      'سفرِ ما به این جهانِ موازی، سفری است به سفرِ خودِ تاریخ؛ به این پرسش که آیا ما زندانیِ ترتیبِ اختراع‌هایمان هستیم، یا می‌توانستیم با تکنیکی دیگر، انسانی دیگر باشیم.'
+    ]
+  },
+  book4: {
+    title: 'جاری‌سازی فناوری؛ این‌بار AI',
+    sub: 'جلد اول',
+    paras: [
+      'فناوری همیشه جاری بوده است، اما این‌بار جریان، خودش را جاری می‌کند. در هر انقلابِ پیشین، ما ابزار را ساختیم و ابزار، جهان را؛ اما در این انقلاب، ابزار، خودِ ما را بازمی‌سازد و پیش از آن که کاری را انجام دهد، راهِ فکرکردنِ ما را تغییر می‌دهد. هوش مصنوعی نه موتورِ بخار است نه برق؛ جریانی است که در آن، ماشین دیگر فقط نیرو نمی‌دهد، بلکه معنا تولید می‌کند.',
+      'این جاری‌سازی، اما، بی‌وطن نیست؛ از معدن، سوخت، کابل و عرقِ انسانی برمی‌خیزد، و خود را به‌صورتِ «ذهنِ پاک» به ما می‌فروشد. ماشین آینه‌ی ماست؛ هرچه در آن می‌بینیم بازتابِ خودِ ماست، و اگر آن را می‌پرستیم، خود را می‌پرستیم.',
+      'جاری‌سازیِ فناوری، این‌بار، از ما می‌خواهد که در اقیانوسِ اطلاعات زندگی کنیم، نه غرق شویم؛ که شفافیت را با راز، و سرعت را با آهستگی بیامیزیم. زیرا شفافیت آزادی نیست، بلکه نظمِ نوینی از انقیاد است.',
+      'جلدِ اول این سفر، با پرسش آغاز می‌شود: اگر فناوری همیشه جاری بوده، این‌بار جریان به کدام سو می‌رود؟ به سوی ماشینی که ما را بازمی‌سازد، یا به سوی انسانی که ماشین را به معنا بازمی‌گرداند؟ جواب، هنوز در جریان است؛ و ما، در همین لحظه، در میانه‌ی آن‌ایم.'
+    ]
+  },
+  book5: {
+    title: 'تلاش‌هایی که دیگر کوچک نیستند',
+    sub: 'جلد دوم',
+    paras: [
+      'در جلدِ نخست، پرسیدیم جریان به کدام سو می‌رود؛ در این جلد، به مقیاسِ جریان می‌نگریم — و می‌بینیم که دیگر هیچ تلاشی کوچک نیست. هوش مصنوعی دیگر آزمایشگاهی در گوشه‌ای نیست؛ اقیانوسی است که معدن، کابل، نیروگاه و سرمایه‌ی سیاره را به درونِ خود می‌کشد. هر مدلِ زبانی که با ما سخن می‌گوید، پشتِ خود میلیاردها دلار، هزاران سرور و رودی از انرژی دارد.',
+      'این تلاش‌های بزرگ، اما، پرسش‌هایی بزرگ‌تر برمی‌انگیزند. وقتی ماشین از ما باهوش‌تر می‌شود اما هنوز نمی‌داند چرا هست، مقیاسِ سرمایه دیگر فقط عدد نیست؛ شکلِ اراده‌ی ماست. هرچه جریان بزرگ‌تر می‌شود، آینه‌ی ماشین واضح‌تر بازتاب می‌دهد: اگر آن را می‌پرستیم، خود را می‌پرستیم؛ و اگر از آن می‌ترسیم، از تصویرِ خودمان می‌ترسیم.',
+      'اما بزرگ‌شدنِ تلاش، به‌خودیِ‌خود، نه پیشرفت است نه زوال؛ تنها جریان است. جاری‌سازیِ فناوری در این مقیاس، از ما می‌خواهد که در اقیانوسِ اطلاعات زندگی کنیم، نه غرق شویم؛ که سرعت را با آهستگی، و قدرت را با مسئولیت بیامیزیم.',
+      'جلدِ دوم با این پرسش بسته می‌شود: وقتی تلاش‌ها دیگر کوچک نیستند، آیا ما نیز بزرگ‌تر شده‌ایم، یا تنها جریان، بزرگ شده و ما را با خود برده است؟ جواب، هنوز در جریان است؛ و ما، در میانه‌ی آن، نه تماشاگر، که بخشی از خودِ جریان‌ایم.'
+    ]
+  }
+};
+
+function openLibrary(id){
+  const b = library[id];
+  if(!b) return;
+  document.getElementById('libTitle').textContent = b.title;
+  document.getElementById('libSub').textContent = b.sub;
+  const intro = `پرویز معین در کتاب «${b.title}» می‌گوید:`;
+  document.getElementById('libBody').innerHTML =
+    `<p style="font-weight:700;color:var(--ink-soft);">${intro}</p>` +
+    b.paras.map(p => `<p>${p}</p>`).join('');
+  document.getElementById('libraryOverlay').classList.add('open');
+  document.getElementById('libraryPanel').scrollTop = 0;
+}
+function closeLibrary(){
+  document.getElementById('libraryOverlay').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLibrary(); });
+</script>
+
+</body>
+</html>
